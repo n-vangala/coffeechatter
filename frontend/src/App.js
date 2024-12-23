@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import "./config/firebase-config"; // Adjust path as needed
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./config/firebase-config";
 import LandingPage from "./home/LandingPage";
 import SignIn from "./home/SignIn";
 import Home from "./home/Home";
@@ -9,7 +11,6 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
